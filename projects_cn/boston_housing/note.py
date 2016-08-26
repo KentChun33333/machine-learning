@@ -55,7 +55,8 @@ print "Mean price: ${:,.2f}".format(mean_price)
 print "Median price ${:,.2f}".format(median_price)
 print "Standard deviation of prices: ${:,.2f}".format(std_price)
 
-
+numpy.corrcoef ()　Normalized covariance matrix
+numpy.cov
 
 from sklearn import metrics
 
@@ -534,3 +535,6 @@ for j,d in enumerate((3,40)):
 pl.subplots_adjust(wspace = 0.02, left=0.07, right=0.95,
                    bottom=0.1, top=0.9)
 pl.show()
+
+
+
