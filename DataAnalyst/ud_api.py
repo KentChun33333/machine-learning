@@ -1,21 +1,21 @@
 
-# import necessary packages
+# =============================================================================
+# Author : Kent Chiu
+# =============================================================================
+
 import requests
 import json
 import logging
-from StringIO import StringIO
 import time
 import datetime
 
-############################################################################
-# API Document                                                             #
-# https://review.udacity.com/api-doc/index.html#!/me/get_me_certifications #
-############################################################################
+# =============================================================================
+# API Document
+# https://review.udacity.com/api-doc/index.html#!/me/get_me_certifications
 
-TOKEN = ('eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2'
-         'VyX2lkIjo0OTc0OCwiZXhwIjoxNDc1NzI0NDIxLCJ0b'
-         '2tlbl90eXBlIjoiYXBpIn0.v8h5_sHStP2wWMBkPOUPU'
-         'osB2-xH8Qb-LPoR91KqVdc')
+
+# passing your token here
+TOKEN = ('''eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0OTc0OCwiZXhwIjoxNDc4MzkwNjU0LCJ0b2tlbl90eXBlIjoiYXBpIn0.wyu3HmLFybeV-gt5ppNl9KsuteOQ7LbUwtMRYztt-dk''')
 
 CERTIFICATIONS_URL = ('https://review-api.udacity.com/api/v1/me'
                       '/certifications.json')
@@ -51,22 +51,12 @@ ch.setFormatter(formatter)
 logger.addHandler(fh)
 logger.addHandler(ch)
 
-def normal_case(jsonD):
-    print '----------------------------------'
-    if jsonD['status']=='certified' :
-        for value in jsonD['project']:
-            print (value, ':' ,jsonD['project'][value])
-    print '----------------------------------'
-
-
 while True:
     res = requests.get(CERTIFICATIONS_URL, headers=headers)
 
     jsonDL = json.loads(res.content)
 
     for jsonD in jsonDL:
-    #    normal_case(jsonD)
-    # time.sleep(3000)
 
         # def messages
         mess = '{} waiting [{}], lang_recruit : [{}]'.format(jsonD['project']['name'], jsonD['project']['awaiting_review_count_by_language'], jsonD['project']['languages_to_recruit'])
